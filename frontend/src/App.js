@@ -75,16 +75,14 @@ function ChatWidget() {
         {/* Modal content */}
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p>Need to figure out how to inject the iframe into the modal</p>
-
           <iframe
               id="surveylegend-survey"
               title="my survey"
               src="https://www.surveylegend.com/survey/#/d29yZHByZXNzMTE2NTky~-MF6VEjI4FTDLM06jlT4"
-              width="100%"
+              width="90%"
               height="1000px"
               allowtransparency="true"
-              style="frameborder: 0; border: 0; margin: 0 auto; background: transparent; background-color: transparent;">
+              style={{frameborder: 0, border: 0, margin: '0 auto', background: 'transparent', backgroundColor: 'transparent'}}>
           	</iframe>
 
         </div>
