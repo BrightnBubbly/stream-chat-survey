@@ -20,8 +20,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 12px;
+  color: #000000;
 }
 
 .App-link {
@@ -41,7 +41,7 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 0px 16px 55px;
+  padding: 0px 16px 10px;
       padding-top: 0px;
   min-height: 100%;
 }
@@ -58,15 +58,15 @@
   width: 20%; /* Full width */
   height: 75%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: #e6f2ff; /* Fallback color */
+  background-color: #e6f2ff; /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #e6f2ff;
   margin: auto;
-  padding: 20px;
-  border: 2px solid #888;
-  width: 80%;
+  padding: 10px;
+  border: 1px solid #e6f2ff;
+  width: 100%;
 }

@@ -2,14 +2,20 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend server for stream-chat-survey",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:keithcrosslin/stream-chat-survey.git"
   },
   "author": "Keith Crosslin",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
 }
