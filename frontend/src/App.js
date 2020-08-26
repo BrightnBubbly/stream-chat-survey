@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
-import { StreamChat } from 'stream-chat';
-import { Chat, Channel, ChannelHeader, MessageInput, MessageList, Thread, Window, } from 'stream-chat-react';
-import logo from './logo.svg';
-import './App.css';
-import 'stream-chat-react/dist/css/index.css';
+import React, { useState } from "react";
+import { StreamChat } from "stream-chat";
+import {
+  Chat,
+  Channel,
+  ChannelHeader,
+  MessageInput,
+  MessageList,
+  Thread,
+  Window,
+} from "stream-chat-react";
+import logo from "./logo.svg";
+import "./App.css";
+import "stream-chat-react/dist/css/index.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          This is the landing page, add appropriate content
-        </p>
+        <p>This is the landing page, add appropriate content</p>
         <ChatWidget></ChatWidget>
       </header>
     </div>
@@ -20,86 +26,114 @@ function App() {
 
 export default App;
 
-
 function ChatWidget() {
-  const [chatState, setChatState] = useState('WAIT'); // WAIT, JOIN, LOAD, CHAT, SURVEY (no idea for LOAD at this point)
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [chatState, setChatState] = useState("WAIT"); // WAIT, JOIN, CHAT, SURVEY (no idea for LOAD at this point)
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const [chatClient, setChatClient] = useState(null);
   const [channel, setChannel] = useState(null);
-
-  // const register = () => {
-  function Join() {
-    setChatState('JOIN'); // for now, using this to test, changing the set to LOAD or CHAT, etc
-  }
 
   async function register(event) {
     event.preventDefault(); // stop processing of form submission
     const response = await fetch("http://localhost:8080/registrations", {
       method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         firstName,
         lastName,
-        email
-      })
-    })
+        email,
+      }),
+    });
     const { userId, token, channelId, apiKey } = await response.json();
     const chatClient = new StreamChat(apiKey);
     await chatClient.setUser(
       {
         id: userId,
         name: email,
-        image: `https://getstream.io/random_svg/?id=${userId}`
+        image: `https://getstream.io/random_svg/?id=${userId}`,
       },
-      token,
+      token
     );
 
-
-    const channel = chatClient.channel('messaging', channelId);
+    const channel = chatClient.channel("messaging", channelId);
     setChatClient(chatClient);
     setChannel(channel);
-    setChatState('CHAT');
+    setChatState("CHAT");
   }
 
-  if (chatState === "SURVEY") {
+  if (chatState === "WAIT") {
     return (
-      /*-- The Modal --*/
+      <div class="wait">
+        <button class="waitbutton" onClick={() => setChatState("JOIN")}>
+          ^
+        </button>
+      </div>
+    );
+  }
+
+  if (chatState === "JOIN") {
+    return (
       <div id="myModal" class="modal">
-
-        {/* Modal content */}
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <iframe
-              id="surveylegend-survey"
-              title="my survey"
-              src="https://www.surveylegend.com/survey/#/d29yZHByZXNzMTE2NTky~-MF6VEjI4FTDLM06jlT4"
-              width="90%"
-              height="1000px"
-              allowtransparency="true"
-              style={{frameborder: 0, border: 0, margin: '0 auto', background: 'transparent', backgroundColor: 'transparent'}}>
-          	</iframe>
-
+        <div class="modal-header" onClick={() => setChatState("WAIT")}><span class="close" >X
+        <span class="tooltiptext">Return to wait</span></span>
+        </div>
+        <div class="modal-content" onSubmit={() => setChatState("CHAT")}>
+          <div className="App container" width="90%">
+            <form className="card" onSubmit={register}>
+              <label>First Name</label>
+              <p>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="first name"
+                  required
+                />
+              </p>
+              <label>Last Name</label>
+              <p>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="last name"
+                  required
+                />
+              </p>
+              <label>Email</label>
+              <p>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="email"
+                  required
+                />
+              </p>
+              <button class="close" type="submit">Start chat</button>
+            </form>
+          </div>
         </div>
       </div>
-    )
+    );
   }
 
-  if (chatState === 'CHAT') {
+  if (chatState === "CHAT") {
     return (
       <div id="myModal" class="modal">
-
         {/* Modal content */}
         <div class="modal-content">
-          <span class="close" onClick={() => setChatState('SURVEY')}>&times;</span>
-
+          <div class="modal-header" onClick={() => setChatState("SURVEY")}><span class="close" >X
+        <span class="tooltiptext">Launch Survey</span>
+          </span>
+          </div>
           <div className="App">
-            <Chat client={chatClient} theme={'messaging light'}>
+            <Chat client={chatClient} theme={"messaging light"}>
               <Channel channel={channel}>
                 <Window>
                   <ChannelHeader />
@@ -113,62 +147,36 @@ function ChatWidget() {
         </div>
       </div>
     );
-
   }
 
-  if (chatState === "JOIN") {
+  if (chatState === "SURVEY") {
     return (
+      /*-- The Modal --*/
       <div id="myModal" class="modal">
-
         {/* Modal content */}
+        <div class="modal-header" onClick={() => setChatState("WAIT")}><span class="close" >X
+        <span class="tooltiptext">Return to wait</span>
+        </span>
+        </div>
         <div class="modal-content">
-          <span class="close">&times;</span>
-
-          <div className="App container">
-            <form className="card" onSubmit={register}>
-              <label>First Name</label>
-              <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="first name"
-                required
-              />
-              <label>Last Name</label>
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                placeholder="last name"
-                required
-              />
-              <label>Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="email"
-                required
-              />
-              <button type="submit">
-                Start chat
-          </button>
-            </form>
-          </div>
+          <iframe
+            id="surveylegend-survey"
+            title="my survey"
+            src="https://www.surveylegend.com/survey/#/d29yZHByZXNzMTE2NTky~-MF6VEjI4FTDLM06jlT4"
+            width="90%"
+            height="1000px"
+            allowtransparency="true"
+            style={{
+              frameborder: 0,
+              border: 0,
+              margin: "0 auto",
+              background: "transparent",
+              backgroundColor: "transparent",
+            }}
+          ></iframe>
         </div>
       </div>
-
     );
   }
 
-  if (chatState === "WAIT") {
-    return (
-      <div style={{ position: 'absolute', right: 30, bottom: 30 }}>
-        <button style={{ width: '60px', height: '60px' }} onClick={Join}>^</button>
-      </div>
-    );
-  }
-
-  // }
 }
-
