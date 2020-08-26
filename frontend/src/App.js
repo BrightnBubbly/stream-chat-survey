@@ -63,13 +63,16 @@ function ChatWidget() {
     const channel = chatClient.channel("messaging", channelId);
     setChatClient(chatClient);
     setChannel(channel);
+    setFirstName("");
+    setLastName("");
+    setEmail("");
     setChatState("CHAT");
   }
 
   if (chatState === "WAIT") {
     return (
-      <div class="wait">
-        <button class="waitbutton" onClick={() => setChatState("JOIN")}>
+      <div className="wait">
+        <button className="waitbutton" onClick={() => setChatState("JOIN")}>
           ^
         </button>
       </div>
@@ -78,12 +81,12 @@ function ChatWidget() {
 
   if (chatState === "JOIN") {
     return (
-      <div id="myModal" class="modal">
-        <div class="modal-header" onClick={() => setChatState("WAIT")}><span class="close" >X
-        <span class="tooltiptext">Return to wait</span></span>
+      <div id="myModal" className="modal">
+        <div className="modal-header" onClick={() => setChatState("WAIT")}><span className="close" >X
+        <span className="tooltiptext">Return to wait</span></span>
         </div>
-        <div class="modal-content" onSubmit={() => setChatState("CHAT")}>
-          <div className="App container" width="90%">
+        <div className="modal-content">
+          <div className="App container">
             <form className="card" onSubmit={register}>
               <label>First Name</label>
               <p>
@@ -115,7 +118,7 @@ function ChatWidget() {
                   required
                 />
               </p>
-              <button class="close" type="submit">Start chat</button>
+              <button className="close" type="submit">Start chat</button>
             </form>
           </div>
         </div>
@@ -123,13 +126,19 @@ function ChatWidget() {
     );
   }
 
+  function startSurvey () {
+    setChatState("SURVEY");
+    setChannel(null);
+    setChatClient(null);
+  }
+
   if (chatState === "CHAT") {
     return (
       <div id="myModal" class="modal">
         {/* Modal content */}
-        <div class="modal-content">
-          <div class="modal-header" onClick={() => setChatState("SURVEY")}><span class="close" >X
-        <span class="tooltiptext">Launch Survey</span>
+        <div className="modal-content">
+          <div className="modal-header" onClick={startSurvey}><span className="close" >X
+        <span className="tooltiptext">Launch Survey</span>
           </span>
           </div>
           <div className="App">
@@ -152,24 +161,24 @@ function ChatWidget() {
   if (chatState === "SURVEY") {
     return (
       /*-- The Modal --*/
-      <div id="myModal" class="modal">
+      <div id="myModal" className="modal">
         {/* Modal content */}
-        <div class="modal-header" onClick={() => setChatState("WAIT")}><span class="close" >X
-        <span class="tooltiptext">Return to wait</span>
+        <div className="modal-header" onClick={() => setChatState("WAIT")}><span className="close" >X
+        <span className="tooltiptext">Return to wait</span>
         </span>
         </div>
-        <div class="modal-content">
+        <div className="modal-content">
           <iframe
             id="surveylegend-survey"
             title="my survey"
             src="https://www.surveylegend.com/survey/#/d29yZHByZXNzMTE2NTky~-MF6VEjI4FTDLM06jlT4"
             width="90%"
-            height="1000px"
+            height="98%"
             allowtransparency="true"
             style={{
-              frameborder: 0,
-              border: 0,
-              margin: "0 auto",
+              // frameborder: 0,
+              // border: 0,
+              // margin: "0 auto",
               background: "transparent",
               backgroundColor: "transparent",
             }}
