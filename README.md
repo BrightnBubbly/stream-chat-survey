@@ -12,8 +12,13 @@ When this button is clicked, the user is presented a form to enter some details 
 
 ![](images/join-and-chat.png)
 
-Once the chat is completed, the user simply closes the chat session by clicking on the large X in the upper right of the screen.
+Once the chat is completed, the user simply closes the chat session by clicking on the large X in the upper right of the screen. *(Note: in a production app, you may want to add some confirmation dialog boxes between closing the chat and launching the survey; we have kept things simple for the purposes of this post.)*
+
 ![](images/close-chat.png)
+
+The app then launches the survey as an `iFrame` in the same modal window. Clicking the close `X` in the upper right corner, returns to the initial starting point.
+
+![](images/survey-screens.png)
 
 ## Technical Overview
 
@@ -44,6 +49,27 @@ The steps to build the `frontend app` are:
 
 ### Registering and Configuring Stream
 
+If you choose to build out this app using the code snippets instead of copping the repository from `github`, you can run the following commands in the terminal:
+
+```terminal
+cd ~/[your local git folder]
+
+mkdir stream-chat-survey
+
+cd stream-chat-survey
+
+mkdir backend
+
+cd backend
+
+npm init
+```
+
+Follow the onscreen instructions inititalize the `backend` app, you will then run the following commands to finish the build of the `backend`:
+
+```terminal
+
+```
 This application uses two backend environment variables:
 
 - STREAM_API_KEY

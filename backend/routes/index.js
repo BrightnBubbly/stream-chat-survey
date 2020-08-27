@@ -1,5 +1,4 @@
 const streamChat = require('stream-chat');
-const axios = require('axios').default;
 const express = require('express');
 const router = express.Router();
 
