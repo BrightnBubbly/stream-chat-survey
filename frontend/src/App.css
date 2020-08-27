@@ -1,49 +1,25 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  height: 100%;
 }
 
 .App-header {
-  background-color: gray;
-  min-height: 100vh;
+  background-color: lightslategray;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
+  padding-top: 5%;
   font-size: 20px;
-  color: #000000;
+}
+
+.App-header .image {
+content: url("./stream_and_surveylegend.png");
 }
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.load {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 0px 16px 10px;
-      padding-top: 0px;
-  min-height: 100%;
 }
 
 .modal {
@@ -55,30 +31,21 @@
   width: 100%;
   height: 100%;
   max-width: 400px;
-  max-height: 700px;
+  max-height: 600px;
   box-sizing: border-box;
   bottom: 10px;
   right: 10px;
-  padding-top: 10px;
-  transform: translate(0);
-  transition-property: transform, opacity;
-  transition-duration: 0.2s, o2s;
-  transition-timing-function: ease, ease;
-  transition-delay: 0s, 0s;
+  padding-top: 5px;
 }
 
-/* Modal Content */
 .modal-content {
-  /* margin: auto; */
   width: 100%;
-  /* overflow: hidden; */
   point-events: all;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /*Enable scroll if needed
   background-color: #fff /* Fallback color */
   /* background-color: #e6f2ff; Black w/ opacity */
-
 }
 
 .close {
@@ -108,23 +75,52 @@ cursor: pointer;
 
 .wait {
   position: absolute;
-  bottom: 30px;
+  width:45px;
+  height: 45px;
+  border-radius: 50%;
+  bottom: 10px;
   right: 30px;
-  background-color: darkcyan;
-  cursor: pointer;
+  background-color: lightblue;
+}
+
+.wait .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  top: -5px;
+  font-size:  10px;
+  right: 50px;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 2;
+}
+
+
+.wait:hover .tooltiptext {
+  visibility: visible;
 }
 
 .waitbutton {
   width:45px;
   height: 45px;
-  color: cadetblue;
+  border-radius: 50%;
+  font-size: 30px;
+  color:black;
   text-align: center;
   cursor: pointer;
 }
 
 .modal-header {
   text-align: right;
-  height: 20px;
+  position: sticky;
+  top: 0;
+  height: 15px;
   padding-right: 20px;
-  /* cursor: pointer; */
+  padding-top: 0px;
+  padding-bottom: 10px;
 }

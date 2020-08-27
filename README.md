@@ -1,6 +1,19 @@
-# Improve your customer chat experience with information from your customers through post-chat surveys
+# Improve your customer chat experience with information from your customers by a  post-chat survey
 ## Integrate surveys with Stream chat
 You are providing a chat experience for your customers, but could you improve the experience? What's a great way to know if you could do better?  Ask your customers. Integrating your [Stream Chat](https://getstream.io/chat/docs) with your favorite Survey tool is a relatively painless endeavor. In this post I demonstrate how to launch a survey at the conclusion of a Chat session. I integrate with [SurveyLegend](https://www.surveylegend.com), but many of the major survey tools provide the same integration option that I demonstrate here.
+
+## What the app does
+
+This app presents a simple landing page and on the lower right corner of the page there is a button to iniciate a chat session.
+
+![](images/landing-page.png)
+
+When this button is clicked, the user is presented a form to enter some details and then they join a Chat session.
+
+![](images/join-and-chat.png)
+
+Once the chat is completed, the user simply closes the chat session by clicking on the large X in the upper right of the screen.
+![](images/close-chat.png)
 
 ## Technical Overview
 
@@ -12,31 +25,33 @@ All the code required for this tutorial is available in the github repository [g
 
 ## Prerequisites
 
-To follow along with the post, you will need a free [Stream](https://getstream.io/get_started/?signup=#flat_feed) account, and a Zendesk Sell account (a Zendesk Trial can be obtained [here](https://www.zendesk.com/register/?source=zendesk_sell#step-1)).
+To run the app in this post or build it out yourself, you will need a free Stream account (get it [here](https://getstream.io/get_started/?signup=#flat_feed)) and an account with a Survey tool (I use a free SurveyLegend account, sign up [here](https://www.surveylegend.com/register/)).
 
 The code in this post is intended to run locally, and assumes a basic knowledge of [React Hooks](https://reactjs.org/docs/hooks-intro.html), [Express](https://expressjs.com/), and [Node.js](https://nodejs.org/en/ "node website").
 
+## The Process
 The steps we will take to configure the `backend` are:
 
 1. [Registering and Configuring Stream](#registering-and-configuring-stream)
 2. [Create a Stream Chat Session](#create-a-stream-chat-session)
 
-The steps of the `frontend` are:
-1. [Initiate the Frontend Chat Screens](#1---initiate-the-frontend-chat-screens)
+The steps to build the `frontend app` are:
+1. [Bootstrap the Frontend Application](#1---bootstrap-the-frontend-application)
+2. []
 2. [Authenticate Admin and Customer to the Chat](#2---authenticate-admin-and-custoemr-to-the-chat)
 3. [Send messages to Zendesk](#3---send-messages-to-zendesk)
 4. [Miscellaneous Backend Endpoints](#4---miscellaneous-backend-endpoints)
 
 ### Registering and Configuring Stream
 
-This application uses three environment variables:
+This application uses two backend environment variables:
 
 - STREAM_API_KEY
 - STREAM_API_SECRET
 
 You will find a file in the Backend folder, `.env.example`, that you can rename to create a `.env` file.
 
-To get the `Stream` credentials, navigate to your [Stream.io Dashboard](https://getstream.io/dashboard/)
+To lookup your `Stream` credentials, navigate to your [Stream.io Dashboard](https://getstream.io/dashboard/)
 
 ![](images/stream-dashboard-button.png)
 
@@ -54,18 +69,41 @@ Give your app a name and select `Development` and click `Submit`
 
 When the .env file has been created, you can start the backend by `npm start` command from the backend folder.
 
-## 1 - Initiate the Frontend Chat Screens
+## 1 - Bootstrap the Frontend Application
 
-Both the `frontend-admin` and `frontend-customer` were bootstrapped using `create-react-app`. For example, inside of your application folder (in this post it is `stream-zendesk-lead-transcript`, you would run:
+The `frontend` was bootstrapped using `create-react-app`. For example, inside of your application folder (in this post it is `stream-chat-survey`, from a terminal you would run:
 
 ```terminal
-npx create-react-app frontend-customer
-npx create-react-app frontend-admin
+npx create-react-app frontend
 ```
 
-Then you can update the scr/App.js files with the following code snippets (noting key differences for the [Admin](http://localhost:4000/) and [Customer](http://localhost:3000/) endpoints). (Note: there are several methodologies for creating multiple user experiences for a front-end React app. While the method used here is convenient for learning, it is redundant code. Choose what's best for your needs on this step.)
+Then you can update the scr/App.js files with the following code. You will note that this sets up a simple landing page.
+
+```jsx
+import React from "react";
+import "./App.css";
+import ChatWidget from "./chatWidget.js";
+
+function App() {
+
+  return (
+      <div className="App">
+        <div className="App-header">
+          <p>Stream and SurveyLegend Integration</p>
+          <div className="image"></div>
+          <p>(This is an example landing page)</p>
+          <ChatWidget></ChatWidget>
+        </div>
+      </div>
+  );
+}
+
+export default App;
+```
 
 ### Add library references
+
+The `app` functionality is contained within the file, `chatWidget.js`, let's break down what goes on here.
 
 Stream's convenient libraries power the front-end. Here is the list of libraries loaded:
 
