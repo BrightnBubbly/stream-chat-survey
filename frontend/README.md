@@ -1,6 +1,6 @@
 # Bootstrap your frontend with react
 
-If required follow the instructions detailed in the `backend/README.md` file to install `nodejs` on your machine. Once you have `node` installed, proceed to setting up your react app.
+If required follow the instructions detailed in the [backend/README.md](../backend/README.md) file to install `nodejs` on your machine. Once you have `node` installed, proceed to setting up your react app.
 
 ## Bootstrap react
 
@@ -10,7 +10,7 @@ Navigate to the project folder where you will build this app, and run the follow
 npx create-react-app frontend
 ```
 
-Then navigate to the frontend folder like this:
+Then navigate to the `frontend` folder like this:
 
 ```terminal
 cd frontend/
@@ -30,4 +30,4 @@ drwxrwxr-x    2    4096  public/
 drwxrwxr-x    2    4096  src/
 ```
 
-With this basic structure, you can now follow the instructions to build out the post from the main REAMDE.md.
+With this basic structure, you can now follow the instructions to build out the post from the main [REAMDE.md](../README.md).
