@@ -3,7 +3,7 @@
 ## Install nodejs
 After having some bad experiences of installing `nodejs` and `express` using some random instructions I found in various blog posts, I recommend that you use `nmv` (Node Version Manager) to install node js.
 
-You can download and find full documentation [here](https://github.com/nvm-sh/nvm). I have copied some key instructions here, fyi.
+You can download and find full documentation [here](https://github.com/nvm-sh/nvm). I have copied some key instructions here, for your information.
 
 ## Install & Update Script
 
@@ -30,13 +30,13 @@ which should output nvm if the installation was successful. Please note that `wh
 
 ## Usage
 
-To download, compile, and install the latest release of node, do this:
+To download, compile, and install the latest release of `node`, do this:
 
 ```terminal
 nvm install node # "node" is an alias for the latest version
 ```
 
-And finally to confirm that node is install and working you can use either of the these two commands:
+And finally to confirm that node is installed and working you can use either of these two commands:
 
 ```terminal
 node --version
@@ -45,7 +45,7 @@ which node
 
 ## Install express-generator
 
-Once you have a working version of node, you can run the following command to install `express-generator`, which you will use to bootstrap your `backend `server. Note: I recommend that you install `express-generator` globally for the current user (and not under root).
+Once you have a working version of `node`, you can run the following command to install `express-generator`, which you will use to bootstrap your `backend` server. Note: I recommend that you install `express-generator` globally for the current user (and not under root).
 
 ```terminal
 npm install -g express-generator # do not use 'sudo'
@@ -54,13 +54,13 @@ Now you are ready to bootstrap your `backend` server.
 
 ## Prepare to bootstrap
 
-Determine where you will store your project and make a project folder in this location. Navigate to this location in terminal and run the following command:
+Determine where you will store your project and make a project folder in this location. Navigate to this location and run the following command:
 
 ```terminal
 express backend
 ```
 
-When you navidate into the `backend` folder, you will find the following resulting folders and files:
+When you navigate into the `backend` folder, you will find the following resulting folders and files:
 ```terminal
 -rw-rw-r-- 1  1075 app.js
 drwxr-xr-x 2  4096 bin/
@@ -70,5 +70,5 @@ drwxr-xr-x 2  4096 routes/
 drwxr-xr-x 2  4096 views/
 ```
 
-With this basic structure, you can now follow the instructions to build out the post from the main REAMDE.md.
+With this basic structure, you can now follow the instructions to build out the post from the main [REAMDE.md](../README.md).
 
