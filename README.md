@@ -309,7 +309,9 @@ if (chatState === "JOIN") {
 }
 ```
 
-This code creates an `input form` to collect the three fields that we use to establish a chat session. Closing this form returns the `ChatState` to `WAIT`, and submitting the form call the `register` function and sets the `ChatState` to `CHAT`.
+This code creates an `input form` to collect the three fields that are passed on submission to the `backend` to establish a chat session via the `register` function described above. Closing this form returns the `ChatState` to `WAIT`, and submitting the form calls the `register` function which also sets the `ChatState` to `CHAT`.
+
+The code snippet for the `ChatState` of `CHAT` follows:
 
 ```jsx
 // frontend.../src/chatWidget.js:121-146
@@ -352,7 +354,7 @@ function startSurvey() { //this function resets the Chat when initiating Survey
 }
 ```
 
-And now the grand finale, we integrate the Survey! Before we look at the code to call a survey, you have to have a survey to call!
+And now the grand finale, to integrate the Survey! Before you look at the code to call a survey, you have to have a survey to call!
 
 ## 3 - Integrate Survey iframe
 I'm not going to describe how to set up a new account with SurveyLegend. I'm confident that you can cover that on your own. You can also create a sample survey, free free to model it on the one I used in the post!
