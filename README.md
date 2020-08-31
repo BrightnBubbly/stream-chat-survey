@@ -309,7 +309,7 @@ if (chatState === "JOIN") {
 }
 ```
 
-This code creates an `input form` to collect the three fiels that we use to establish the chat session. Closing this form returns the `ChatState` to `WAIT`, and submiting the form call the `register` function and sets the `ChatState` to `CHAT`.
+This code creates an `input form` to collect the three fields that we use to establish a chat session. Closing this form returns the `ChatState` to `WAIT`, and submitting the form call the `register` function and sets the `ChatState` to `CHAT`.
 
 ```jsx
 // frontend.../src/chatWidget.js:121-146
