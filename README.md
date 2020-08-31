@@ -26,7 +26,7 @@ The app in this post is composed of a `React` frontend and a `nodjs` backend. Th
 
 For SurveyLegend, I created a free account and then a simple survey. SurveyLegend automatically provides and iframe code that I use to launch the survey. This is explained below.
 
-All the code required for this tutorial is available in GitHub [GitHub/stream-chat-survey](https://GitHub.com/keithcrosslin/stream-chat-survey).
+All the code required for this tutorial is available in GitHub [GitHub/stream-chat-survey](https://GitHub.com/keithcrosslin/stream-chat-survey). You will find instructions for bootstrapping your own `backend` and `frontend` servers in the respective `README.md` files of these two folders.
 
 ## Prerequisites
 
