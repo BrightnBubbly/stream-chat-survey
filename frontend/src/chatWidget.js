@@ -150,7 +150,7 @@ function ChatWidget() {
                     <iframe
                         id="surveylegend-survey"
                         title="my survey"
-                        src={process.env.REACT_APP_SURVEY_SRC}
+                        src='https://www.surveylegend.com/survey/#/d29yZHByZXNzMTE2NTky~-MF6VEjI4FTDLM06jlT4'
                         width="98%"
                         height="95%"
                         allowtransparency="true"

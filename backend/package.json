@@ -12,7 +12,9 @@
   },
   "author": "Keith Crosslin",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.8.5"
+  },
   "devDependencies": {
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
