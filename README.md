@@ -23,7 +23,7 @@ The app then launches the survey as an `iframe`, and submits it by clicking on `
 
 ## Technical Overview
 
-The app in this post is composed of a `React` frontend and a `nodjs` backend. The frontend was bootstrapped using `create-react-app`, and the backend server was bootstrapped using `express-generator`. Both frontend and backend leverage Stream's [JavaScript library](https://GitHub.com/GetStream/stream-js).
+The app in this post is composed of a `React` frontend and a `nodejs` backend. The frontend was bootstrapped using `create-react-app`, and the backend server was bootstrapped using `express-generator`. Both frontend and backend leverage Stream's [JavaScript library](https://GitHub.com/GetStream/stream-js).
 
 For SurveyLegend, I created a free account and then a simple survey. SurveyLegend automatically provides and iframe code that I use to launch the survey. This is explained below.
 
