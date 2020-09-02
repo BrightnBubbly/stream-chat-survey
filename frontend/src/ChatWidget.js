@@ -60,7 +60,7 @@ function ChatWidget() {
     function wait() {
         return (
             <div className="wait" onClick={() => setChatState("JOIN")}>
-                <img src={chaticon} alt="shows integration between Stream and SurveyLegend"></img>
+                <img src={chaticon} alt="start a chat"></img>
                 <span className="tooltiptext">Click to chat</span>
             </div>
         );
