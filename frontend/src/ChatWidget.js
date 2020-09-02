@@ -68,12 +68,12 @@ function ChatWidget() {
 
     function join() {
         return (
-            <div className="modal">
-                <div className="modal-header" onClick={() => setChatState("WAIT")}>
+            <div className="join">
+                <div className="join-header" onClick={() => setChatState("WAIT")}>
                     <img src={closeicon} alt="X"></img>
                     <span className="tooltiptext">Click to cancel chat</span>
                 </div>
-                <div className="modal-content">
+                <div className="join-content">
                     <form className="card">
                         <label>First Name</label>
                         <p>
@@ -107,7 +107,7 @@ function ChatWidget() {
                         </p>
                     </form>
                 </div>
-                <div className="modal-footer" onClick={register}>
+                <div className="join-footer" onClick={register}>
                     <button className="close" type="submit">
                         Start chat
                 </button>
@@ -171,6 +171,9 @@ function ChatWidget() {
                         }}
                     ></iframe>
                 </div>
+                <div className="survey-footer">
+                </div>
+
             </div>
         );
     };

@@ -1,12 +1,9 @@
 .App {
   text-align: center;
-  /* height: 100%; */
-  background-color: lightslategray;
+  /* background-color: lightslategray; */
 }
 
 .App-header {
-  /* background-color: lightslategray; */
-  /* min-height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,149 +12,7 @@
   font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.chat {
-  display: flex;
-  position: absolute;
-  max-height: 600px;
-  flex-direction: column;
-  right: 10px;
-}
-
-.chat-header {
-  display: flex;
-  justify-content: right;
-  cursor: pointer;
-  background-color: lightblue;
-  padding: 3px;
-}
-
-.chat-content {
-  display: flex;
-  align-items: flex-start;
-  height: 75%;
-}
-
-.chat-header .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black; /* width: 100%; /* Full width */
-  color: #fff;
-  text-align: center;
-  top: -5px;
-  font-size: 12px;
-  right: 10%;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 2;
-}
-
-.chat-header:hover .tooltiptext {
-  visibility: visible;
-  background-color: blue;
-}
-
-
-.modal {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  z-index: 1; /* Sit on top */
-  background-color: #e6f2ff;
-  border: none;
-  max-height: 50%;
-  bottom: 10px;
-  right: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.modal-content {
-  display: flex;
-  align-items: stretch;
-  /* height: 75%; */
-  text-align: left;
-  font-size: 14px;
-  /* overflow: auto; Enable scroll if needed */
-  /* background-color: #fff Fallback color */
-  /* background-color: #e6f2ff; Black w/ opacity */
-}
-
-.modal-content p {
-  margin: 3px;
-  padding: 0px;
-}
-
-.modal-content input {
-  margin-bottom: 20px;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: right;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.modal-header .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black; /* width: 100%; /* Full width */
-  color: #fff;
-  text-align: center;
-  top: -5px;
-  font-size: 12px;
-  right: 10%;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 2;
-}
-
-.modal-header:hover .tooltiptext {
-  visibility: visible;
-  background-color: blue;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.modal-footer .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  bottom: 10px;
-  font-size: 12px;
-  right: 200px;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 2;
-}
-
-.modal-footer:hover .tooltiptext {
-  visibility: visible;
-  background-color: blue;
-}
-
-.close {
-  cursor: pointer;
-}
+/* wait class is the the WAIT component */
 
 .wait {
   display: flex;
@@ -193,26 +48,151 @@
   visibility: visible;
 }
 
-.modal-survey {
+/* join is the the JOIN component */
+
+.join {
   display: flex;
-  height: 600px;
-  width: 400px;
+  position: absolute;
+  flex-direction: column;
+  z-index: 1;
+  background-color: #e6f2ff;
+  border: none;
+  max-height: 50%;
+  bottom: 10px;
+  right: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.join-header {
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.join-header .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black; /* width: 100%; /* Full width */
+  color: #fff;
+  text-align: center;
+  top: -5px;
+  font-size: 12px;
+  right: 10%;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 2;
+}
+
+.join-header:hover .tooltiptext {
+  visibility: visible;
+  background-color: blue;
+}
+
+.join-content {
+  display: flex;
   align-items: stretch;
-  /* height: 75%; */
   text-align: left;
   font-size: 14px;
-  /* overflow: auto; Enable scroll if needed */
-  /* background-color: #fff Fallback color */
-  /* background-color: #e6f2ff; Black w/ opacity */
- 
 }
+
+.join-content p {
+  margin: 3px;
+  padding: 0px;
+}
+
+.join-content input {
+  margin-bottom: 20px;
+}
+
+
+.join-footer {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.join-footer .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  bottom: 10px;
+  font-size: 12px;
+  right: 200px;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.join-footer:hover .tooltiptext {
+  visibility: visible;
+  background-color: blue;
+}
+
+/* chat sets css for CHAT component */
+
+.chat {
+  display: flex;
+  /* z-index: 1; */
+  position: absolute;
+  flex-direction: column;
+  right: 20px;
+  top: 10px;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+  background-color: lightblue;
+  padding: 3px;
+}
+
+.chat-header .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  right: 8%;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.chat-header:hover .tooltiptext {
+  visibility: visible;
+  background-color: blue;
+}
+
+.chat-content {
+  /* display: flex; */
+  /* align-items: stretch; */
+}
+
+
+
+.close {
+  cursor: pointer;
+}
+
 
 .survey {
   display: flex;
   position: absolute;
   flex-direction: column;
   background-color: #e6f2ff;
-  height: 700px;
+  height: 90%;
   width: 400px;
   bottom: 10px;
   right: 10px;
@@ -229,10 +209,14 @@
   cursor: pointer;
 }
 
+.survey-footer {
+  display: flex;
+  height: 3px;
+}
+
 .survey-header .tooltiptext {
   visibility: hidden;
-  width: 120px;
-  background-color: black; /* width: 100%; /* Full width */
+  width: 140px;
   color: #fff;
   text-align: center;
   top: -5px;
@@ -240,10 +224,7 @@
   right: 10%;
   border-radius: 6px;
   padding: 5px 0;
-
-  /* Position the tooltip */
   position: absolute;
-  z-index: 2;
 }
 
 .survey-header:hover .tooltiptext {

@@ -1,4 +1,4 @@
-# Improve your customer chat experience with information from your customers
+# Improve your customer chat experience with customer feedback
 ## Integrate surveys with Stream chat
 You are providing a chat experience for your customers, but could you improve the experience? What's a great way to know if you could do better?  Ask your customers. Integrating your [Stream Chat](https://getstream.io/chat/docs) with your favorite Survey tool is a relatively painless endeavor. In this post I demonstrate how to launch a survey at the conclusion of a Chat session. I integrate with [SurveyLegend](https://www.surveylegend.com), but many of the major survey tools provide the same integration option that I demonstrate here.
 
@@ -143,10 +143,11 @@ And as with the `backend`, run `npm install` to ensure the dependencies are pres
 Update the standard `src/App.js` file with the following code to setup a simple landing page.
 
 ```jsx
-// frontend/src/App.js:1-19
+// frontend/src/App.js:1-20
 import React from "react";
 import "./App.css";
 import ChatWidget from "./chatWidget.js";
+import landimage from "./stream_and_surveylegend.png";
 
 function App() {
 
@@ -154,7 +155,7 @@ function App() {
       <div className="App">
         <div className="App-header">
           <p>Stream and SurveyLegend Integration</p>
-          <div className="image"></div>
+            <div><img src={landimage} alt="shows integration between Stream and SurveyLegend"></img></div>
           <p>(This is an example landing page)</p>
           <ChatWidget></ChatWidget>
         </div>
@@ -168,31 +169,35 @@ export default App;
 
 The chat session and survey functionality is contained within the file, `ChatWidget.js`, let's break down what goes on here.
 
-Stream's convenient libraries power the front-end. Here is the list of libraries loaded:
+Stream's convenient libraries power the front-end. Here is the list of libraries loaded (which includes some image references):
 
 ```jsx
-// frontend/src/chatWidget.js:1-11
+// frontend/src/chatWidget.js:1-15
 import React, { useState } from "react";
 import { StreamChat } from "stream-chat";
-import { Chat, 
-    Channel, 
-    ChannelHeader, 
-    MessageInput, 
-    MessageList, 
-    Thread, 
-    Window, } from 'stream-chat-react';
-import 'stream-chat-react/dist/css/index.css';
+import {
+    Chat,
+    Channel,
+    ChannelHeader,
+    MessageInput,
+    MessageList,
+    Thread,
+    Window,
+} from "stream-chat-react";
+import "stream-chat-react/dist/css/index.css";
 import "./App.css";
+import chaticon from "./chat-icon-white.png"
+import closeicon from "./close-icon.png"
 ```
 
 The application code is contained a single function, `ChatWidget`. As you can see from the following code snippet (not the entire function, which is broken down into snippets below) the function works with six `React Hooks`.
 
-- `chatState`: will be used to manage the flow between the four different interfaces that make up our widget (WAIT, JOIN, CHAT, and SURVEY).
+- `chatState`: will be used to manage the flow between the four different interface components that make up our widget (WAIT, JOIN, CHAT, and SURVEY).
 - `firstName`, `lastName`, `email`: are used to store the user input values which are used to initiate the `chat session`.
 - `chatClient` and `channel`: used to start a chat session and the corresponding channel.
 
 ```jsx
-// frontend/src/chatWidget.js:16-23
+// frontend/src/chatWidget.js:17-198
 function ChatWidget() {
     const [chatState, setChatState] = useState("WAIT"); // WAIT, JOIN, CHAT, SURVEY
     const [email, setEmail] = useState("");
@@ -201,15 +206,34 @@ function ChatWidget() {
 
     const [chatClient, setChatClient] = useState(null);
     const [channel, setChannel] = useState(null);
-    //...
+    
+    //...lines 26-180
+
+    if (chatState === "WAIT") {
+        return wait();
+    }
+
+    if (chatState === "JOIN") {
+        return join();
+    }
+
+    if (chatState === "CHAT") {
+        return chat();
+    }
+
+    if (chatState === "SURVEY") {
+        return survey();
+    }
 }
+
+export default ChatWidget;
 ```
 Within the ChatWidget function, there is an async call to the backend to establish the chat session. This `register` function first passes the three user input values (email, firstName, lastName - in a production application more information might be required). The function then stores the response from the `backend`, and starts the chat with the `setUser` method.
 
 The function ends with a reset of the Join form input Hooks and lastly `setChatState` changes the `ChatState` to 'WAIT', which will display the chat modal window. More on that below.  
 
 ```jsx
-// frontend/src/chatWidget.js:25-57
+// frontend/src/chatWidget.js:26-58
 async function register(event) {
     event.preventDefault(); // stop processing of form submission
     const response = await fetch("http://localhost:8080/registrations", {
@@ -244,33 +268,32 @@ async function register(event) {
     setChatState("CHAT"); //show the Chat window
 }
 ```
-As mentioned above, the chat widget has four different display or interface states: WAIT, JOIN, CHAT, and SURVEY. The screenshots of these four interfaces were shown at the beginning of the post. Let's take a look at the code for each of these.
+As mentioned above, the chat widget has four different display or interface states: WAIT, JOIN, CHAT, and SURVEY. The screenshots of these four interfaces were shown at the beginning of the post. Let's take a look at the functions that generate each of these.
 
 ```jsx
-// frontend/src/chatWidget.js:59-66
-if (chatState === "WAIT") {
+// frontend/src/chatWidget.js:60-67
+function wait() {
     return (
-        <div className="wait">
-            <button className="waitbutton" onClick={() => setChatState("JOIN")}>^</button>
-            <span className="tooltiptext">Click here to join chat</span>
+        <div className="wait" onClick={() => setChatState("JOIN")}>
+            <img src={chaticon} alt="shows integration between Stream and SurveyLegend"></img>
+            <span className="tooltiptext">Click to chat</span>
         </div>
     );
-}
+};
 ```
-The `WAIT` interface isn't much, just a little button that floats on the lower right side of the screen. The user clicks here to initiate a chat, and change the `ChatState` to `JOIN`, the code snippet that follows:
+The `WAIT` interface isn't much, just a little button that floats on the lower right side of the screen. The user clicks here to initiate a chat, and change the `ChatState` to `JOIN`, the function that follows:
 
 ```jsx
-// frontend/src/chatWidget.js:68-113
-if (chatState === "JOIN") {
+// frontend/src/chatWidget.js:69-119
+function join() {
     return (
-        <div className="modal">
-            <div className="modal-header" onClick={() => setChatState("WAIT")}>
-                <span className="close" >X
-                    <span className="tooltiptext">Return to wait</span>
-                </span>
+        <div className="join">
+            <div className="join-header" onClick={() => setChatState("WAIT")}>
+                <img src={closeicon} alt="X"></img>
+                <span className="tooltiptext">Click to cancel chat</span>
             </div>
-            <div className="modal-content">
-                <form className="card" onSubmit={register}>
+            <div className="join-content">
+                <form className="card">
                     <label>First Name</label>
                     <p>
                         <input
@@ -301,31 +324,42 @@ if (chatState === "JOIN") {
                             required
                         />
                     </p>
-                    <button className="close" type="submit">Start chat</button>
                 </form>
             </div>
+            <div className="join-footer" onClick={register}>
+                <button className="close" type="submit">
+                    Start chat
+            </button>
+                <span className="tooltiptext">Click to Submit</span>
+            </div>
+
         </div>
     );
-}
+};
 ```
 
 This code creates an `input form` to collect the three fields that are passed on submission to the `backend` to establish a chat session via the `register` function described above. Closing this form returns the `ChatState` to `WAIT`, and submitting the form calls the `register` function which also sets the `ChatState` to `CHAT`.
 
-The code snippet for the `ChatState` of `CHAT` follows:
+The function for the `ChatState` of `CHAT` follows:
 
 ```jsx
-// frontend/src/chatWidget.js:121-146
-if (chatState === "CHAT") {
+// frontend/src/chatWidget.js:121-151
+function chat() {
+    function startSurvey() {
+        //this function resets the Chat when initiating Survey
+        setChatState("SURVEY");
+        setChannel(null); //reset Chat for another user if need be
+        setChatClient(null); //reset Chat for another user if need be
+    }
+
     return (
-        <div id="myModal" class="modal">
-            {/* Modal content */}
-            <div className="modal-content">
-                <div className="modal-header" onClick={startSurvey}>
-                    <span className="close" >X
-                        <span className="tooltiptext">Launch Survey</span>
-                    </span>
-                </div>
-                <div className="App">
+        <div id="myChat" class="chat">
+            <div className="chat-header">
+                <img src={closeicon} alt="X" onClick={startSurvey}></img>
+                <span className="tooltiptext">Close chat to launch Survey</span>
+            </div>
+            <div className="chat-content">
+                <div>
                     <Chat client={chatClient} theme={"messaging light"}>
                         <Channel channel={channel}>
                             <Window>
@@ -340,7 +374,7 @@ if (chatState === "CHAT") {
             </div>
         </div>
     );
-}
+};
 ```
 
 This code displays the `Chat` components that were initialized by the `register` function. Closing this form will kick off a user survey by setting the `ChatState` to `SURVEY`. At this point, it is a good idea to kill the chat session, so I have created a function, `startSurvey`, to do this in addition to setting the `ChatState` - I simply set the `Channel` and `ChatClient` to `null`.
@@ -377,21 +411,19 @@ Once you have an `iframe` let's integrate it into our application.
 
 I use the same modal component to contain the `iframe` code that SurveyLegend provided me without any modification - it just works! Cool. Note that closing this widget returns the `ChatState` to `WAIT`. When you paste in your iframe, you may have to fiddle with the `modal-content` css settings if you don't like the way your survey is framed in the modal window.
 
-One last point about the survey. To avoid that my survey isn't called by hundreds of random software enthusiasts around the internet, I have masked the `URL` for my survey in an `env` variable in the file `...frontend/env.development`. You will find a file called `env.development.example`, that you can rename and paste in the `URL` of your survey. Alternatively, you can also just paste the `URL` into the `src` element of the `iframe` at line 161.
+One last point about the survey. To avoid that my survey isn't called by hundreds of random software enthusiasts around the internet, I have masked the `URL` for my survey in an `env` variable in the file `...frontend/env.development`. You will find a file called `env.development.example`, that you can rename and paste in the `URL` of your survey. Alternatively, you can also just paste the `URL` into the `src` element of the `iframe` at line 161. The `survey` function follows:
 
 
 ```jsx
-// frontend/src/chatWidget.js:148-173
-if (chatState === "SURVEY") {
+// frontend/src/chatWidget.js:153-179
+function survey() {
     return (
-        /*-- The Modal --*/
-        <div id="myModal" className="modal">
-            {/* Modal content */}
-            <div className="modal-header" onClick={() => setChatState("WAIT")}><span className="close" >X
-        <span className="tooltiptext">Return to wait</span>
-            </span>
+        <div className="survey">
+            <div className="survey-header">
+                <img src={closeicon} alt="X" onClick={() => setChatState("WAIT")}></img>
+                <span className="tooltiptext">Click to return to Wait</span>
             </div>
-            <div className="modal-content">
+            <div className="survey-content">
                 <iframe
                     id="surveylegend-survey"
                     title="my survey"
@@ -405,9 +437,12 @@ if (chatState === "SURVEY") {
                     }}
                 ></iframe>
             </div>
+            <div className="survey-footer">
+            </div>
+
         </div>
     );
-}
+};
 ```
 
 And that does it! You now understand how to integrate Stream Chat with your Survey tool. Good luck learning this solution and then implementing it into your chat application.
