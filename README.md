@@ -17,7 +17,7 @@ Once the chat is completed, the user simply closes the chat session by clicking 
 
 ![](images/close-chat.png)
 
-The app then launches the survey as an `iframe` in the same modal window. Clicking the close `X` in the upper right corner, returns to the initial starting point.
+The app then launches the survey as an `iframe`, and submits it by clicking on `Submit`. After submission of the survey, clicking the close `X` in the upper right corner, returns to the initial starting point.
 
 ![](images/survey-screen.png)
 
