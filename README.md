@@ -123,7 +123,7 @@ router.post('/registrations', async (req, res, next) => {
 
 module.exports = router;
 ```
-This `registration` router/post defined above, takes the `firstName`, `lastName`, and `email` from the frontend app and uses these values to establish a Chat Session. For more information on how this works, check [here](need link).
+This `registration` router/post defined above, takes the `firstName`, `lastName`, and `email` from the frontend app and uses these values to establish a Chat Session.
 
 ## 2 - Build the frontend application
 
