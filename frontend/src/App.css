@@ -15,7 +15,7 @@
 }
 
 .App-header .image {
-content: url("./stream_and_surveylegend.png");
+/* content: url("./stream_and_surveylegend.png"); */
 }
 
 .App-link {
@@ -23,39 +23,53 @@ content: url("./stream_and_surveylegend.png");
 }
 
 .modal {
-  display: block; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  display: flex;
+  position: absolute;
+  flex-direction: column;
   z-index: 1; /* Sit on top */
   background-color: #e6f2ff;
   border: none;
-  width: 100%;
-  height: 100%;
-  max-width: 400px;
-  max-height: 600px;
-  box-sizing: border-box;
+  max-height: 75%;
   bottom: 10px;
   right: 10px;
-  padding-top: 5px;
+  padding: 3px;
 }
 
 .modal-content {
-  width: 100%;
-  point-events: all;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /*Enable scroll if needed
-  background-color: #fff /* Fallback color */
+  display: flex;
+  flex: 6;
+  align-items: stretch;
+  height: 75%; 
+  text-align: justify;
+  font-size: 14px;
+  overflow: auto; /*Enable scroll if needed */
+  /* background-color: #fff Fallback color */
   /* background-color: #e6f2ff; Black w/ opacity */
+}
+
+.modal-content p {
+  margin: 3px;
+  padding: 0px;
+}
+
+.modal-content input {
+  margin-bottom: 20px;
+}
+.modal-header {
+  display: flex;
+  flex: 1;
+  justify-content: right;
+  cursor: pointer;
 }
 
 .close {
 cursor: pointer;
 }
 
-.close .tooltiptext {
+.modal-header .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: black;
+  background-color: black;  /* width: 100%; /* Full width */
   color: #fff;
   text-align: center;
   top: -5px;
@@ -69,58 +83,41 @@ cursor: pointer;
   z-index: 2;
 }
 
-.close:hover .tooltiptext {
+.modal-header:hover .tooltiptext {
   visibility: visible;
+  background-color: blue;
 }
 
 .wait {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  cursor: pointer;
   width:45px;
   height: 45px;
   border-radius: 50%;
   bottom: 10px;
-  right: 30px;
+  right: 10px;
+  background-color: blue;
+}
+
+.wait:hover {
   background-color: lightblue;
 }
-
-.wait .tooltiptext {
+.wait .tooltiptext {  
   visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
+  width: 100px;
+  color: black;
   text-align: center;
-  top: -5px;
-  font-size:  10px;
-  right: 50px;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
+  top: 0px;
+  font-size:  12px;
+  right: 40px;
   position: absolute;
-  z-index: 2;
+  /* z-index: 2; */
 }
-
 
 .wait:hover .tooltiptext {
   visibility: visible;
-}
-
-.waitbutton {
-  width:45px;
-  height: 45px;
-  border-radius: 50%;
-  font-size: 30px;
-  color:black;
-  text-align: center;
-  cursor: pointer;
-}
-
-.modal-header {
-  text-align: right;
-  position: sticky;
-  top: 0;
-  height: 15px;
-  padding-right: 20px;
-  padding-top: 0px;
-  padding-bottom: 10px;
 }

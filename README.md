@@ -166,7 +166,7 @@ export default App;
 ```
 ### Frontend widget for chat and survey
 
-The chat session and survey functionality is contained within the file, `chatWidget.js`, let's break down what goes on here.
+The chat session and survey functionality is contained within the file, `ChatWidget.js`, let's break down what goes on here.
 
 Stream's convenient libraries power the front-end. Here is the list of libraries loaded:
 
@@ -201,7 +201,7 @@ function ChatWidget() {
 
     const [chatClient, setChatClient] = useState(null);
     const [channel, setChannel] = useState(null);
-...
+    //...
 }
 ```
 Within the ChatWidget function, there is an async call to the backend to establish the chat session. This `register` function first passes the three user input values (email, firstName, lastName - in a production application more information might be required). The function then stores the response from the `backend`, and starts the chat with the `setUser` method.
@@ -314,7 +314,7 @@ This code creates an `input form` to collect the three fields that are passed on
 The code snippet for the `ChatState` of `CHAT` follows:
 
 ```jsx
-// frontend.../src/chatWidget.js:121-146
+// frontend/src/chatWidget.js:121-146
 if (chatState === "CHAT") {
     return (
         <div id="myModal" class="modal">
@@ -346,7 +346,7 @@ if (chatState === "CHAT") {
 This code displays the `Chat` components that were initialized by the `register` function. Closing this form will kick off a user survey by setting the `ChatState` to `SURVEY`. At this point, it is a good idea to kill the chat session, so I have created a function, `startSurvey`, to do this in addition to setting the `ChatState` - I simply set the `Channel` and `ChatClient` to `null`.
 
 ```jsx
-// frontend.../src/chatWidget.js:115-119
+// frontend/src/chatWidget.js:115-119
 function startSurvey() { //this function resets the Chat when initiating Survey
     setChatState("SURVEY");
     setChannel(null); //reset Chat for another user if need be
@@ -381,7 +381,7 @@ One last point about the survey. To avoid that my survey isn't called by hundred
 
 
 ```jsx
-// frontend.../src/chatWidget.js:148-173
+// frontend/src/chatWidget.js:148-173
 if (chatState === "SURVEY") {
     return (
         /*-- The Modal --*/
