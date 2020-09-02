@@ -7,18 +7,19 @@ You are providing a chat experience for your customers, but could you improve th
 This app presents a simple landing page and on the lower right corner of the page there is a button to initiate a chat session.
 
 ![](images/landing-page.png)
+![](images/start_button.png) ![](images/start_button_hover.png)
 
-When this button is clicked, the user is presented a form to enter some details and then they join a Chat session.
+When this button is clicked, the user is presented with a form to enter some contact details, and then they start the Chat session by submitting the form.
 
-![](images/join-and-chat.png)
+![](images/join-form.png) ![](images/chat-session.png)
 
-Once the chat is completed, the user simply closes the chat session by clicking on the large X in the upper right of the screen. *(Note: in a production app, you may want to add some confirmation dialog boxes between closing the chat and launching the survey; I have kept things simple for the purposes of this post.)*
+Once the chat is completed, the user simply closes the chat session by clicking on the large X in the upper right of the screen, which will then lauch the `survey`. *(Note: in a production app, you may want to add some confirmation dialog boxes between closing the chat and launching the survey; I have kept things simple for the purposes of this post.)*
 
 ![](images/close-chat.png)
 
 The app then launches the survey as an `iframe` in the same modal window. Clicking the close `X` in the upper right corner, returns to the initial starting point.
 
-![](images/survey-screens.png)
+![](images/survey-screen.png)
 
 ## Technical Overview
 
