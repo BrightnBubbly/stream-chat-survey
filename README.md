@@ -409,7 +409,7 @@ Once you select Share, you then select the `Embed in web page` option and then c
 
 Once you have an `iframe` let's integrate it into our application.
 
-I use the same modal component to contain the `iframe` code that SurveyLegend provided me without any modification - it just works! Cool. Note that closing this widget returns the `ChatState` to `WAIT`. When you paste in your iframe, you may have to fiddle with the `modal-content` css settings if you don't like the way your survey is framed in the modal window.
+I use the same modal component to contain the `iframe` code that SurveyLegend provided me without any modification - it just works! Cool. Note that closing this widget returns the `ChatState` to `WAIT`.
 
 One last point about the survey. To avoid that my survey isn't called by hundreds of random software enthusiasts around the internet, I have masked the `URL` for my survey in an `env` variable in the file `...frontend/env.development`. You will find a file called `env.development.example`, that you can rename and paste in the `URL` of your survey. Alternatively, you can also just paste the `URL` into the `src` element of the `iframe` at line 161. The `survey` function follows:
 
