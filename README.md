@@ -1,4 +1,4 @@
-# Improve your customer chat experience with information from your customers by a  post-chat survey
+# Improve your customer chat experience with information from your customers
 ## Integrate surveys with Stream chat
 You are providing a chat experience for your customers, but could you improve the experience? What's a great way to know if you could do better?  Ask your customers. Integrating your [Stream Chat](https://getstream.io/chat/docs) with your favorite Survey tool is a relatively painless endeavor. In this post I demonstrate how to launch a survey at the conclusion of a Chat session. I integrate with [SurveyLegend](https://www.surveylegend.com), but many of the major survey tools provide the same integration option that I demonstrate here.
 
