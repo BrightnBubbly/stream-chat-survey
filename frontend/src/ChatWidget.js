@@ -127,7 +127,7 @@ function ChatWidget() {
         }
 
         return (
-            <div id="myChat" class="chat">
+            <div id="myChat" className="chat">
                 <div className="chat-header">
                     <img src={closeicon} alt="X" onClick={startSurvey}></img>
                     <span className="tooltiptext">Close chat to launch Survey</span>
