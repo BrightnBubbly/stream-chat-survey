@@ -1,4 +1,5 @@
 import React from "react";
+import "stream-chat-react/dist/css/index.css";
 import "./App.css";
 import ChatWidget from "./ChatWidget.js";
 import landimage from "./stream_and_surveylegend.png";

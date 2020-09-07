@@ -48,108 +48,20 @@
   visibility: visible;
 }
 
-/* join is the the JOIN component */
-
-.join {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  z-index: 1;
-  background-color: #e6f2ff;
-  border: none;
-  max-height: 50%;
-  bottom: 10px;
-  right: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.join-header {
-  display: flex;
-  justify-content: right;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.join-header .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black; /* width: 100%; /* Full width */
-  color: #fff;
-  text-align: center;
-  top: -5px;
-  font-size: 12px;
-  right: 10%;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 2;
-}
-
-.join-header:hover .tooltiptext {
-  visibility: visible;
-  background-color: blue;
-}
-
-.join-content {
-  display: flex;
-  align-items: stretch;
-  text-align: left;
-  font-size: 14px;
-}
-
-.join-content p {
-  margin: 3px;
-  padding: 0px;
-}
-
-.join-content input {
-  margin-bottom: 20px;
-}
-
-
-.join-footer {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.join-footer .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  bottom: 10px;
-  font-size: 12px;
-  right: 200px;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 2;
-}
-
-.join-footer:hover .tooltiptext {
-  visibility: visible;
-  background-color: blue;
-}
 
 /* chat sets css for CHAT component */
 
-.chat {
+.popup {
   display: flex;
   /* z-index: 1; */
   position: absolute;
   flex-direction: column;
   right: 20px;
-  top: 10px;
+  bottom: 10px;
+  background-color: #e6f2ff;
 }
 
-.chat-header {
+.popup-header {
   display: flex;
   justify-content: right;
   cursor: pointer;
@@ -157,7 +69,7 @@
   padding: 3px;
 }
 
-.chat-header .tooltiptext {
+.popup-header .tooltiptext {
   visibility: hidden;
   width: 200px;
   color: #fff;
@@ -170,64 +82,52 @@
   z-index: 2;
 }
 
-.chat-header:hover .tooltiptext {
+.popup-header:hover .tooltiptext {
   visibility: visible;
   background-color: blue;
 }
 
-.chat-content {
-  /* display: flex; */
-  /* align-items: stretch; */
+.popup-content {
+  display: flex;
+  min-height: 50%;
+  width: 375px;
+  flex-direction: column;
 }
 
+.popup-input {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+  margin: 15px 0;
+}
+
+.popup-input label {
+  text-align: left;
+}
+
+.popup-footer button {
+  width: 100%;
+  height: 40px;
+}
+
+.survey {
+  width: 100%;
+  height: 50vh;
+}
 
 
 .close {
   cursor: pointer;
 }
 
-
-.survey {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  background-color: #e6f2ff;
-  height: 90%;
-  width: 400px;
-  bottom: 10px;
-  right: 10px;
-  padding: 3px;
+.str-chat {
+  height: 50vh;
 }
 
-.survey-content {
-  display: flex;
-  height: 100%;
-}
-.survey-header {
-  display: flex;
-  justify-content: right;
-  cursor: pointer;
+.str-chat-channel.messaging .str-chat__main-panel {
+  padding: 0;
 }
 
-.survey-footer {
-  display: flex;
-  height: 3px;
-}
-
-.survey-header .tooltiptext {
-  visibility: hidden;
-  width: 140px;
-  color: #fff;
-  text-align: center;
-  top: -5px;
-  font-size: 12px;
-  right: 10%;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-}
-
-.survey-header:hover .tooltiptext {
-  visibility: visible;
-  background-color: blue;
+.messaging.str-chat .str-chat__list {
+  padding: 0 5px;
 }
