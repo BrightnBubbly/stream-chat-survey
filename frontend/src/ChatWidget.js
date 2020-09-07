@@ -9,8 +9,6 @@ import {
     Thread,
     Window,
 } from "stream-chat-react";
-import "stream-chat-react/dist/css/index.css";
-import "./App.css";
 import chaticon from "./chat-icon-white.png"
 import closeicon from "./close-icon.png"
 
@@ -68,52 +66,51 @@ function ChatWidget() {
 
     function join() {
         return (
-            <div className="join">
-                <div className="join-header" onClick={() => setChatState("WAIT")}>
+            <div className="popup">
+                <div className="popup-header" onClick={() => setChatState("WAIT")}>
                     <img src={closeicon} alt="X"></img>
                     <span className="tooltiptext">Click to cancel chat</span>
                 </div>
-                <div className="join-content">
-                    <form className="card">
-                        <label>First Name</label>
-                        <p>
+                <form onSubmit={register}>
+                    <div className="popup-content">
+                        <div className="popup-input">
+                            <label htmlFor="firstName">First Name</label>
                             <input
+                                id="firstName"
                                 type="text"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 placeholder="first name"
                                 required
                             />
-                        </p>
-                        <label>Last Name</label>
-                        <p>
+                        </div>
+                        <div className="popup-input">
+                            <label htmlFor="lastName">Last Name</label>
                             <input
+                                id="lastName"
                                 type="text"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 placeholder="last name"
                                 required
                             />
-                        </p>
-                        <label>Email</label>
-                        <p>
+                        </div>
+                        <div className="popup-input">
+                            <label htmlFor="email">Email</label>
                             <input
+                                id="email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="email"
                                 required
                             />
-                        </p>
-                    </form>
-                </div>
-                <div className="join-footer" onClick={register}>
-                    <button className="close" type="submit">
-                        Start chat
-                </button>
-                    <span className="tooltiptext">Click to Submit</span>
-                </div>
-
+                        </div>
+                    </div>
+                    <div className="popup-footer">
+                        <button className="close" type="submit"> Start chat </button>
+                    </div>
+                </form>
             </div>
         );
     };
@@ -127,24 +124,22 @@ function ChatWidget() {
         }
 
         return (
-            <div id="myChat" className="chat">
-                <div className="chat-header">
+            <div id="myChat" className="popup">
+                <div className="popup-header">
                     <img src={closeicon} alt="X" onClick={startSurvey}></img>
                     <span className="tooltiptext">Close chat to launch Survey</span>
                 </div>
-                <div className="chat-content">
-                    <div>
-                        <Chat client={chatClient} theme={"messaging light"}>
-                            <Channel channel={channel}>
-                                <Window>
-                                    <ChannelHeader />
-                                    <MessageList />
-                                    <MessageInput />
-                                </Window>
-                                <Thread />
-                            </Channel>
-                        </Chat>
-                    </div>
+                <div className="popup-content">
+                    <Chat client={chatClient} theme={"messaging light"}>
+                        <Channel channel={channel}>
+                            <Window>
+                                <ChannelHeader />
+                                <MessageList />
+                                <MessageInput />
+                            </Window>
+                            <Thread />
+                        </Channel>
+                    </Chat>
                 </div>
             </div>
         );
@@ -152,28 +147,27 @@ function ChatWidget() {
 
     function survey() {
         return (
-            <div className="survey">
-                <div className="survey-header">
+            <div className="popup">
+                <div className="popup-header">
                     <img src={closeicon} alt="X" onClick={() => setChatState("WAIT")}></img>
                     <span className="tooltiptext">Click to return to Wait</span>
                 </div>
-                <div className="survey-content">
-                    <iframe
-                        id="surveylegend-survey"
-                        title="my survey"
-                        src={process.env.REACT_APP_SURVEY_SRC}
-                        width="98%"
-                        height="95%"
-                        allowtransparency="true"
-                        style={{
-                            background: "transparent",
-                            backgroundColor: "transparent",
-                        }}
-                    ></iframe>
+                <div className="popup-content">
+                    <div className="survey">
+                        <iframe
+                            id="surveylegend-survey"
+                            title="my survey"
+                            src={process.env.REACT_APP_SURVEY_SRC}
+                            width="98%"
+                            height="98%"
+                            allowtransparency="true"
+                            style={{
+                                background: "transparent",
+                                backgroundColor: "transparent",
+                            }}
+                        ></iframe>
+                    </div>
                 </div>
-                <div className="survey-footer">
-                </div>
-
             </div>
         );
     };
