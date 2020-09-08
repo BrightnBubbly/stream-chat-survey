@@ -47,15 +47,17 @@ The code in this post is intended to run locally, and assumes a basic knowledge 
 
 For the `backend`, please ensure that you have the following dependencies in your `package.json` file.
 
+<!-- https://gist.github.com/keithcrosslin/905ef98960b41d978c4947106049a3f8 -->
+
 ```jsx
 // backend/package.json:18-24
-  "dependencies": {
-    "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "morgan": "^1.10.0",
-    "stream-chat": "^2.1.0"
-  }
+"dependencies": {
+  "cookie-parser": "^1.4.5",
+  "dotenv": "^8.2.0",
+  "express": "^4.17.1",
+  "morgan": "^1.10.0",
+  "stream-chat": "^2.1.0"
+}
 ```
 
 Once the changes in the package.json file are made, run the following command to install the npm dependencies in your `backend`.
@@ -90,6 +92,8 @@ Give your app a name and select `Development` and click `Submit`
 Ok, now let's build out the `frontend` app. We will return to the `backend` later to explore the function that communicates with Stream.
 
 One of the files in the `backend` is `routes/index.js`. This is where you will find the code which establishes a `chat session` with Stream. The code snippet for this is shown below for your information
+
+<!-- https://gist.github.com/keithcrosslin/aaf525255c5ebb7d4f6b651ceaa4c3b7 -->
 
 ```jsx
 // backend/routes/index.js:1-35
@@ -138,20 +142,24 @@ Ok, so now let's look at how the `frontend` app works.
 
 Before you build the `frontend`, ensure that the following dependencies are found in your `frontend/package.json` file:
 
+<!-- https://gist.github.com/keithcrosslin/fd312e4fbcd38df8cb80504174c1a1e7 -->
+
 ```jsx
 // frontend/package.json:5-10
 "dependencies": {
-    "cors": "^2.8.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "stream-chat-react": "^2.2.2"
+  "cors": "^2.8.5",
+  "react": "^16.13.1",
+  "react-dom": "^16.13.1",
+  "react-scripts": "3.4.3",
+  "stream-chat-react": "^2.2.2"
 }
 ```
 
 And as with the `backend`, run `npm install` to ensure the dependencies are present in your application.
 
 Update the standard `src/App.js` file with the following code to setup a simple landing page.
+
+<!-- https://gist.github.com/keithcrosslin/9b3fa443e0c2091cacc0b004d74b35ff -->
 
 ```jsx
 // frontend/src/App.js:1-21
@@ -188,6 +196,8 @@ The chat session and survey functionality is contained within the file, `ChatWid
 
 Stream's convenient libraries power the front-end. Here is the list of libraries loaded (which includes some image references):
 
+<!-- https://gist.github.com/keithcrosslin/e1598f5f1b50208634161a3b0fc6d4e6 -->
+
 ```jsx
 // frontend/src/ChatWidget.js:1-13
 import React, { useState } from "react";
@@ -210,6 +220,7 @@ The application code is contained a single function, `ChatWidget`. As you can se
 - `chatState`: will be used to manage the flow between the four different interface components that make up our widget (WAIT, JOIN, CHAT, and SURVEY).
 - `firstName`, `lastName`, `email`: are used to store the user input values which are used to initiate the `chat session`.
 - `chatClient` and `channel`: used to start a chat session and the corresponding channel.
+<!-- https://gist.github.com/keithcrosslin/20fa2c84c9a5d4ccfa9b5587bfb11e15 -->
 
 ```jsx
 // frontend/src/ChatWidget.js:15-192
@@ -246,6 +257,8 @@ export default ChatWidget;
 
 As mentioned above, the chat widget has four different display or interface states: `WAIT`, `JOIN`, `CHAT`, and `SURVEY`. The screenshots of these four interfaces were shown at the beginning of the post. Let's take a look at the functions that generate each of these.
 
+<!-- https://gist.github.com/keithcrosslin/7da3573e67550b823cdfd113de353baf -->
+
 ```jsx
 // frontend/src/ChatWidget.js:58-65
 function wait() {
@@ -259,6 +272,8 @@ function wait() {
 ```
 
 The `WAIT` interface isn't much, just a little button that floats on the lower right side of the screen. The user clicks here to initiate a chat, and change the `ChatState` to `JOIN`, the function that follows:
+
+<!-- https://gist.github.com/keithcrosslin/72061f63ebd6af88189bc827e22b043c -->
 
 ```jsx
 // frontend/src/ChatWidget.js:67-116
@@ -323,6 +338,8 @@ The is an async call to the `backend` to establish the chat session happens in t
 
 The function ends with a reset of the Join form input Hooks and lastly `setChatState` changes the `ChatState` to 'WAIT'.
 
+<!-- https://gist.github.com/keithcrosslin/c97aad83087145786fbaae3dd70789d4 -->
+
 ```jsx
 // frontend/src/ChatWidget.js:24-56
 async function register(event) {
@@ -361,6 +378,8 @@ async function register(event) {
 ```
 
 The function for the `ChatState` of `CHAT` follows:
+
+<!-- https://gist.github.com/keithcrosslin/4406f7171ba93427deb28c470a6c3dd4 -->
 
 ```jsx
 // frontend/src/ChatWidget.js:118-146
@@ -422,6 +441,8 @@ Once you have an `iframe` let's integrate it into our application.
 We use the `iframe` code that SurveyLegend provided without any modification - it just works, which is cool! By the way, note that closing the Survey widget returns the `ChatState` to `WAIT`.
 
 One last point about the survey. To avoid that my survey isn't called by hundreds of random software enthusiasts around the internet, we have masked the `URL` for my survey in an `env` variable in the file `frontend/.env`. You will find a file called `.env.example`, that you can rename and paste in the `URL` of your survey. Alternatively, you can also just paste the `URL` into the `src` element of the `iframe` at line 160. The `survey` function follows:
+
+<!-- https://gist.github.com/keithcrosslin/f556a55ebc450faecfe47df7c202bb0d -->
 
 ```jsx
 // frontend/src/ChatWidget.js:148-173
